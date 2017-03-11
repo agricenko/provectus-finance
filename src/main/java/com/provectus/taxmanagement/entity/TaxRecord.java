@@ -1,17 +1,20 @@
 package com.provectus.taxmanagement.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 /**
  * Created by alexey on 10.03.17.
  */
+@Document
 public class TaxRecord {
     private Long id;
     private String counterpartyName;
     private Date receivingDate;
     private Double uahRevenue = 0d;
     private Double usdRevenue = 0d;
-    private Double exchRateUsdUahNBUatReceivingDate;
+    private Double exchRateUsdUahNBUatReceivingDate = 0d;
     private Double uahAmountForTaxInspection;//usdRevenue * exchRateUsdUahNBUatReceivingDate + uahRevenue
     private String taxPeriod;//like Q1 2017, Q4 2016
     private Double taxValue;//uahAmountForTaxInspection * Employee.taxPercentage or uahAmountForTaxInspection * this.taxPercentage

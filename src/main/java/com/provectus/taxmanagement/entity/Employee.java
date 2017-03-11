@@ -1,6 +1,7 @@
 package com.provectus.taxmanagement.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by alexey on 10.03.17.
  */
+@Document(collection = "employees")
 public class Employee implements Serializable {
     @Id
     private Long id;
