@@ -1,6 +1,7 @@
 package com.provectus.taxmanagement.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,6 +14,8 @@ import java.util.Date;
 public class TaxRecord {
     @Id
     private String id;
+    @Version
+    private Long version;
     private String counterpartyName;
     @Indexed
     private Date receivingDate;
@@ -118,6 +121,14 @@ public class TaxRecord {
         this.taxPercentage = taxPercentage;
     }
 
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,6 +137,7 @@ public class TaxRecord {
         TaxRecord taxRecord = (TaxRecord) o;
 
         if (id != null ? !id.equals(taxRecord.id) : taxRecord.id != null) return false;
+        if (version != null ? !version.equals(taxRecord.version) : taxRecord.version != null) return false;
         if (counterpartyName != null ? !counterpartyName.equals(taxRecord.counterpartyName) : taxRecord.counterpartyName != null)
             return false;
         if (receivingDate != null ? !receivingDate.equals(taxRecord.receivingDate) : taxRecord.receivingDate != null)
@@ -138,13 +150,18 @@ public class TaxRecord {
             return false;
         if (taxPeriod != null ? !taxPeriod.equals(taxRecord.taxPeriod) : taxRecord.taxPeriod != null) return false;
         if (taxValue != null ? !taxValue.equals(taxRecord.taxValue) : taxRecord.taxValue != null) return false;
-        return !(taxPercentage != null ? !taxPercentage.equals(taxRecord.taxPercentage) : taxRecord.taxPercentage != null);
+        if (taxPercentage != null ? !taxPercentage.equals(taxRecord.taxPercentage) : taxRecord.taxPercentage != null)
+            return false;
+        if (createdDate != null ? !createdDate.equals(taxRecord.createdDate) : taxRecord.createdDate != null)
+            return false;
+        return !(modifiedDate != null ? !modifiedDate.equals(taxRecord.modifiedDate) : taxRecord.modifiedDate != null);
 
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (version != null ? version.hashCode() : 0);
         result = 31 * result + (counterpartyName != null ? counterpartyName.hashCode() : 0);
         result = 31 * result + (receivingDate != null ? receivingDate.hashCode() : 0);
         result = 31 * result + (uahRevenue != null ? uahRevenue.hashCode() : 0);
@@ -154,6 +171,8 @@ public class TaxRecord {
         result = 31 * result + (taxPeriod != null ? taxPeriod.hashCode() : 0);
         result = 31 * result + (taxValue != null ? taxValue.hashCode() : 0);
         result = 31 * result + (taxPercentage != null ? taxPercentage.hashCode() : 0);
+        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
+        result = 31 * result + (modifiedDate != null ? modifiedDate.hashCode() : 0);
         return result;
     }
 }

@@ -3,10 +3,9 @@ package com.provectus.taxmanagement.integration.repository;
 import com.provectus.taxmanagement.entity.TaxRecord;
 import com.provectus.taxmanagement.integration.TestParent;
 import org.junit.Test;
+import org.springframework.dao.OptimisticLockingFailureException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 /**
  * Created by alexey on 11.03.17.
@@ -46,5 +45,18 @@ public class TaxRecordRepositoryTest extends TestParent {
         taxRepository.delete(foundRecord);
         TaxRecord deletedRecord = taxRepository.findOne(foundRecord.getId());
         assertNull(deletedRecord);
+    }
+
+    @Test(expected = OptimisticLockingFailureException.class)
+    public void testOptimisticLocking() {
+        TaxRecord record = new TaxRecord();
+        record.setUahRevenue(100d);
+        TaxRecord savedRecord = taxRepository.save(record);
+        TaxRecord foundRecord = taxRepository.findOne(savedRecord.getId());
+
+        savedRecord.setUsdRevenue(200d);
+
+        taxRepository.save(savedRecord);
+        taxRepository.save(foundRecord);
     }
 }

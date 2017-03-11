@@ -1,6 +1,7 @@
 package com.provectus.taxmanagement.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,6 +16,8 @@ import java.util.List;
 public class Employee implements Serializable {
     @Id
     private String id;
+    @Version
+    private Long version;
     @Indexed
     private String firstName;
     @Indexed
@@ -103,6 +106,14 @@ public class Employee implements Serializable {
         this.taxRecords = taxRecords;
     }
 
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -111,24 +122,36 @@ public class Employee implements Serializable {
         Employee employee = (Employee) o;
 
         if (id != null ? !id.equals(employee.id) : employee.id != null) return false;
+        if (version != null ? !version.equals(employee.version) : employee.version != null) return false;
         if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
         if (lastName != null ? !lastName.equals(employee.lastName) : employee.lastName != null) return false;
         if (patronymic != null ? !patronymic.equals(employee.patronymic) : employee.patronymic != null) return false;
         if (comment != null ? !comment.equals(employee.comment) : employee.comment != null) return false;
         if (departnemt != null ? !departnemt.equals(employee.departnemt) : employee.departnemt != null) return false;
-        return !(taxPercentage != null ? !taxPercentage.equals(employee.taxPercentage) : employee.taxPercentage != null);
+        if (taxPercentage != null ? !taxPercentage.equals(employee.taxPercentage) : employee.taxPercentage != null)
+            return false;
+        if (kved != null ? !kved.equals(employee.kved) : employee.kved != null) return false;
+        if (taxRecords != null ? !taxRecords.equals(employee.taxRecords) : employee.taxRecords != null) return false;
+        if (createdDate != null ? !createdDate.equals(employee.createdDate) : employee.createdDate != null)
+            return false;
+        return !(modifiedDate != null ? !modifiedDate.equals(employee.modifiedDate) : employee.modifiedDate != null);
 
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (version != null ? version.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         result = 31 * result + (departnemt != null ? departnemt.hashCode() : 0);
         result = 31 * result + (taxPercentage != null ? taxPercentage.hashCode() : 0);
+        result = 31 * result + (kved != null ? kved.hashCode() : 0);
+        result = 31 * result + (taxRecords != null ? taxRecords.hashCode() : 0);
+        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
+        result = 31 * result + (modifiedDate != null ? modifiedDate.hashCode() : 0);
         return result;
     }
 }

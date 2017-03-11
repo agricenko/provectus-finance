@@ -3,9 +3,10 @@ package com.provectus.taxmanagement.integration.repository;
 import com.provectus.taxmanagement.entity.Employee;
 import com.provectus.taxmanagement.integration.TestParent;
 import org.junit.Test;
+import org.springframework.dao.OptimisticLockingFailureException;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by alexey on 11.03.17.
@@ -44,6 +45,7 @@ public class EmployeeRepositoryTest extends TestParent {
 
         Employee updatedFromDB = employeeRepository.findOne(updatedEmployee.getId());
         assertEquals(record, updatedFromDB);
+        assertEquals(updatedFromDB.getVersion(), new Long(1));
     }
 
     @Test
@@ -55,6 +57,20 @@ public class EmployeeRepositoryTest extends TestParent {
 
         Employee record = employeeRepository.save(employee);
         assertNotNull(record);
+    }
 
+    @Test(expected = OptimisticLockingFailureException.class)
+    public void testOptimisticLocking() {
+        Employee employee = new Employee();
+        employee.setFirstName("Vasya");
+
+        Employee savedRecord = employeeRepository.save(employee);
+        Employee foundRecord = employeeRepository.findOne(savedRecord.getId());
+
+        savedRecord.setLastName("Ivanov");
+        foundRecord.setLastName("Petrov");
+
+        employeeRepository.save(savedRecord);
+        employeeRepository.save(foundRecord);
     }
 }
