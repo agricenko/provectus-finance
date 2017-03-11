@@ -1,6 +1,6 @@
-package com.provectus.service;
+package com.provectus.taxmanagement.service;
 
-import com.provectus.entity.Employee;
+import com.provectus.taxmanagement.entity.Employee;
 
 /**
  * Created by alexey on 10.03.17.

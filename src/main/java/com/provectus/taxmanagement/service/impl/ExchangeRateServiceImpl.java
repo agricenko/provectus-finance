@@ -1,6 +1,6 @@
-package com.provectus.service.impl;
+package com.provectus.taxmanagement.service.impl;
 
-import com.provectus.service.ExchangeRateService;
+import com.provectus.taxmanagement.service.ExchangeRateService;
 
 import java.util.Currency;
 import java.util.Date;

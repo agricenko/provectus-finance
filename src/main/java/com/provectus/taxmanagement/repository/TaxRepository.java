@@ -1,4 +1,4 @@
-package com.provectus.repository;
+package com.provectus.taxmanagement.repository;
 
 /**
  * Created by alexey on 10.03.17.

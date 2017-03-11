@@ -1,21 +1,28 @@
-package com.provectus.entity;
+package com.provectus.taxmanagement.entity;
+
+import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by alexey on 10.03.17.
  */
 public class Employee implements Serializable {
+    @Id
     private Long id;
     private String firstName;
     private String lastName;
     private String patronymic;
     private String comment;
     private String departnemt;
-    private Integer taxPercentage;
+    private Integer taxPercentage = 5;//default current value
     private List<String> kved;
     private List<TaxRecord> taxRecords;
+
+    private Date createdDate;
+    private Date modifiedDate;
 
     public Long getId() {
         return id;

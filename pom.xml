@@ -5,14 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.provectus</groupId>
-    <artifactId>taxes-management</artifactId>
+    <artifactId>tax-management</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <spring-data-mongodb.version>1.10.1.RELEASE</spring-data-mongodb.version>
     </properties>
 
     <!-- add findBugs-->
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>${spring-data-mongodb.version}</version>
+        </dependency>
+
+    </dependencies>
 </project>
