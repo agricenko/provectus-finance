@@ -13,15 +13,42 @@ import static junit.framework.Assert.assertNotNull;
 public class EmployeeRepositoryTest extends TestParent {
 
     @Test
-    public void testRepositoriesNotNull() {
-        assertNotNull(employeeRepository);
-        assertNotNull(taxRepository);
+    public void testSaveEmployee() {
+        Employee employee = new Employee();
+        employee.setId(String.valueOf("1"));
+        employee.setFirstName("Alex1");
+        employee.setLastName("Ivanov");
+        employee.setPatronymic("Ivanovich");
+
+        Employee record = employeeRepository.save(employee);
+        assertNotNull(record);
+
+        Employee one = employeeRepository.findOne(String.valueOf("1"));
+        assertEquals(one, record);
     }
 
     @Test
-    public void testSaveEmppoyee() {
+    public void testUpdateEmployee() {
         Employee employee = new Employee();
-        employee.setId(1l);
+        employee.setId(String.valueOf("2"));
+        employee.setFirstName("Alex2");
+        employee.setLastName("Ivanov");
+        employee.setPatronymic("Ivanovich");
+        Employee record = employeeRepository.save(employee);
+        assertNotNull(record);
+        Employee one = employeeRepository.findOne(String.valueOf("2"));
+        assertEquals(one, record);
+
+        record.setLastName("Ivanov2");
+        Employee updatedEmployee = employeeRepository.save(record);
+
+        Employee updatedFromDB = employeeRepository.findOne(updatedEmployee.getId());
+        assertEquals(record, updatedFromDB);
+    }
+
+    @Test
+    public void testSaveDefaultIdEmppoyee() {
+        Employee employee = new Employee();
         employee.setFirstName("Alex");
         employee.setLastName("Ivanov");
         employee.setPatronymic("Ivanovich");
@@ -29,7 +56,5 @@ public class EmployeeRepositoryTest extends TestParent {
         Employee record = employeeRepository.save(employee);
         assertNotNull(record);
 
-        Employee one = employeeRepository.findOne(1l);
-        assertEquals(one, record);
     }
 }

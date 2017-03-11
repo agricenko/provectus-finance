@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+
 /**
  * Created by alexey on 11.03.17.
  */
@@ -23,5 +24,4 @@ public abstract class TestParent {
     @Autowired
     @Qualifier("taxRepository")
     protected TaxRepository taxRepository;
-
 }

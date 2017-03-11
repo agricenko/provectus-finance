@@ -20,7 +20,14 @@ public class TestApplicationConfiguration {
     @Bean
     public MongoOperations mongoTemplate() {
         MongoClient mongoClient = new MongoClient();
-        return new MongoTemplate(new SimpleMongoDbFactory(mongoClient, "test"));
+        MongoTemplate mongoTemplate = new MongoTemplate(new SimpleMongoDbFactory(mongoClient, "test"));
+        dropCollections(mongoTemplate);
+        return mongoTemplate;
+    }
+
+    private void dropCollections(MongoTemplate mongoTemplate) {
+        mongoTemplate.dropCollection("employees");
+        mongoTemplate.dropCollection("taxRecords");
     }
 
     @Bean

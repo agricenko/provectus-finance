@@ -1,5 +1,7 @@
 package com.provectus.taxmanagement.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -7,10 +9,12 @@ import java.util.Date;
 /**
  * Created by alexey on 10.03.17.
  */
-@Document
+@Document(collection = "taxRecords")
 public class TaxRecord {
-    private Long id;
+    @Id
+    private String id;
     private String counterpartyName;
+    @Indexed
     private Date receivingDate;
     private Double uahRevenue = 0d;
     private Double usdRevenue = 0d;
@@ -33,11 +37,11 @@ public class TaxRecord {
         return taxValue;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

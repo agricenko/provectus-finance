@@ -1,6 +1,7 @@
 package com.provectus.taxmanagement.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -13,11 +14,15 @@ import java.util.List;
 @Document(collection = "employees")
 public class Employee implements Serializable {
     @Id
-    private Long id;
+    private String id;
+    @Indexed
     private String firstName;
+    @Indexed
     private String lastName;
+    @Indexed
     private String patronymic;
     private String comment;
+    @Indexed
     private String departnemt;
     private Integer taxPercentage = 5;//default current value
     private List<String> kved;
@@ -26,11 +31,11 @@ public class Employee implements Serializable {
     private Date createdDate;
     private Date modifiedDate;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
