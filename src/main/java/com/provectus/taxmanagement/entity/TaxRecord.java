@@ -5,13 +5,14 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by alexey on 10.03.17.
  */
 @Document(collection = "taxRecords")
-public class TaxRecord {
+public class TaxRecord implements Serializable {
     @Id
     private String id;
     @Version
@@ -23,9 +24,9 @@ public class TaxRecord {
     private Double usdRevenue = 0d;
     private Double exchRateUsdUahNBUatReceivingDate = 0d;
     private Double uahAmountForTaxInspection;//usdRevenue * exchRateUsdUahNBUatReceivingDate + uahRevenue
-    private String taxPeriod;//like Q1 2017, Q4 2016
+    private String taxQuoter;//like Q1 2017, Q4 2016
     private Double taxValue;//uahAmountForTaxInspection * Employee.taxPercentage or uahAmountForTaxInspection * this.taxPercentage
-    private Integer taxPercentage = 5;//default current value
+    private Integer taxPercentage = Employee.TAX_PERCENTAGE_EMPLOYEE_3th_CATEGORY;//default current value
 
     private Date createdDate;
     private Date modifiedDate;
@@ -96,12 +97,12 @@ public class TaxRecord {
         this.uahAmountForTaxInspection = uahAmountForTaxInspection;
     }
 
-    public String getTaxPeriod() {
-        return taxPeriod;
+    public String getTaxQuoter() {
+        return taxQuoter;
     }
 
-    public void setTaxPeriod(String taxPeriod) {
-        this.taxPeriod = taxPeriod;
+    public void setTaxQuoter(String taxQuoter) {
+        this.taxQuoter = taxQuoter;
     }
 
 
@@ -148,7 +149,7 @@ public class TaxRecord {
             return false;
         if (uahAmountForTaxInspection != null ? !uahAmountForTaxInspection.equals(taxRecord.uahAmountForTaxInspection) : taxRecord.uahAmountForTaxInspection != null)
             return false;
-        if (taxPeriod != null ? !taxPeriod.equals(taxRecord.taxPeriod) : taxRecord.taxPeriod != null) return false;
+        if (taxQuoter != null ? !taxQuoter.equals(taxRecord.taxQuoter) : taxRecord.taxQuoter != null) return false;
         if (taxValue != null ? !taxValue.equals(taxRecord.taxValue) : taxRecord.taxValue != null) return false;
         if (taxPercentage != null ? !taxPercentage.equals(taxRecord.taxPercentage) : taxRecord.taxPercentage != null)
             return false;
@@ -168,7 +169,7 @@ public class TaxRecord {
         result = 31 * result + (usdRevenue != null ? usdRevenue.hashCode() : 0);
         result = 31 * result + (exchRateUsdUahNBUatReceivingDate != null ? exchRateUsdUahNBUatReceivingDate.hashCode() : 0);
         result = 31 * result + (uahAmountForTaxInspection != null ? uahAmountForTaxInspection.hashCode() : 0);
-        result = 31 * result + (taxPeriod != null ? taxPeriod.hashCode() : 0);
+        result = 31 * result + (taxQuoter != null ? taxQuoter.hashCode() : 0);
         result = 31 * result + (taxValue != null ? taxValue.hashCode() : 0);
         result = 31 * result + (taxPercentage != null ? taxPercentage.hashCode() : 0);
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);

@@ -14,6 +14,8 @@ import java.util.List;
  */
 @Document(collection = "employees")
 public class Employee implements Serializable {
+    public static final int TAX_PERCENTAGE_EMPLOYEE_3th_CATEGORY = 5;
+
     @Id
     private String id;
     @Version
@@ -27,7 +29,7 @@ public class Employee implements Serializable {
     private String comment;
     @Indexed
     private String departnemt;
-    private Integer taxPercentage = 5;//default current value
+    private Integer taxPercentage = TAX_PERCENTAGE_EMPLOYEE_3th_CATEGORY;//default current value
     private List<String> kved;
     private List<TaxRecord> taxRecords;
 
