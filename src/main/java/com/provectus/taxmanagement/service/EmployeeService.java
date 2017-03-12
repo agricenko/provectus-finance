@@ -1,11 +1,12 @@
 package com.provectus.taxmanagement.service;
 
 
-import org.springframework.stereotype.Service;
+import com.provectus.taxmanagement.entity.Employee;
 
 /**
  * Created by alexey on 10.03.17.
  */
-@Service
 public interface EmployeeService {
+
+    Employee save(Employee employee);
 }

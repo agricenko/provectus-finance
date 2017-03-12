@@ -1,5 +1,6 @@
 package com.provectus.taxmanagement.entity;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -14,7 +15,7 @@ import java.util.Date;
 @Document(collection = "taxRecords")
 public class TaxRecord implements Serializable {
     @Id
-    private String id;
+    private ObjectId id;
     @Version
     private Long version;
     private String counterpartyName;
@@ -41,11 +42,11 @@ public class TaxRecord implements Serializable {
         return taxValue;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

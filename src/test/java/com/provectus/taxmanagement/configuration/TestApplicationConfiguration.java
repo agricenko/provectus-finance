@@ -28,6 +28,7 @@ public class TestApplicationConfiguration {
     private void dropCollections(MongoTemplate mongoTemplate) {
         mongoTemplate.dropCollection("employees");
         mongoTemplate.dropCollection("taxRecords");
+        mongoTemplate.dropCollection("quarters");
     }
 
     @Bean

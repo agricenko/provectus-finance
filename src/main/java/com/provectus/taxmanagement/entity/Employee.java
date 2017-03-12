@@ -1,11 +1,14 @@
 package com.provectus.taxmanagement.entity;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +20,7 @@ public class Employee implements Serializable {
     public static final int TAX_PERCENTAGE_EMPLOYEE_3th_CATEGORY = 5;
 
     @Id
-    private String id;
+    private ObjectId id;
     @Version
     private Long version;
     @Indexed
@@ -25,22 +28,33 @@ public class Employee implements Serializable {
     @Indexed
     private String lastName;
     @Indexed
-    private String patronymic;
+    private String secondName;
     private String comment;
     @Indexed
-    private String departnemt;
+    private String department;
+    @Indexed
+    private String email;
     private Integer taxPercentage = TAX_PERCENTAGE_EMPLOYEE_3th_CATEGORY;//default current value
     private List<String> kved;
-    private List<TaxRecord> taxRecords;
+    @DBRef
+    private List<Quarter> quartersList = new ArrayList<>();
 
     private Date createdDate;
     private Date modifiedDate;
 
-    public String getId() {
+    public void addQuarter(Quarter quarter) {
+        quartersList.add(quarter);
+    }
+
+    public void removeQuarter(Quarter quarter) {
+        quartersList.remove(quarter);
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -60,12 +74,12 @@ public class Employee implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getPatronymic() {
-        return patronymic;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public String getComment() {
@@ -76,12 +90,12 @@ public class Employee implements Serializable {
         this.comment = comment;
     }
 
-    public String getDepartnemt() {
-        return departnemt;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setDepartnemt(String departnemt) {
-        this.departnemt = departnemt;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public Integer getTaxPercentage() {
@@ -100,12 +114,12 @@ public class Employee implements Serializable {
         this.kved = kved;
     }
 
-    public List<TaxRecord> getTaxRecords() {
-        return taxRecords;
+    public List<Quarter> getQuartersList() {
+        return quartersList;
     }
 
-    public void setTaxRecords(List<TaxRecord> taxRecords) {
-        this.taxRecords = taxRecords;
+    public void setQuartersList(List<Quarter> quartersList) {
+        this.quartersList = quartersList;
     }
 
     public Long getVersion() {
@@ -114,6 +128,14 @@ public class Employee implements Serializable {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -127,13 +149,15 @@ public class Employee implements Serializable {
         if (version != null ? !version.equals(employee.version) : employee.version != null) return false;
         if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
         if (lastName != null ? !lastName.equals(employee.lastName) : employee.lastName != null) return false;
-        if (patronymic != null ? !patronymic.equals(employee.patronymic) : employee.patronymic != null) return false;
+        if (secondName != null ? !secondName.equals(employee.secondName) : employee.secondName != null) return false;
         if (comment != null ? !comment.equals(employee.comment) : employee.comment != null) return false;
-        if (departnemt != null ? !departnemt.equals(employee.departnemt) : employee.departnemt != null) return false;
+        if (department != null ? !department.equals(employee.department) : employee.department != null) return false;
+        if (email != null ? !email.equals(employee.email) : employee.email != null) return false;
         if (taxPercentage != null ? !taxPercentage.equals(employee.taxPercentage) : employee.taxPercentage != null)
             return false;
         if (kved != null ? !kved.equals(employee.kved) : employee.kved != null) return false;
-        if (taxRecords != null ? !taxRecords.equals(employee.taxRecords) : employee.taxRecords != null) return false;
+        if (quartersList != null ? !quartersList.equals(employee.quartersList) : employee.quartersList != null)
+            return false;
         if (createdDate != null ? !createdDate.equals(employee.createdDate) : employee.createdDate != null)
             return false;
         return !(modifiedDate != null ? !modifiedDate.equals(employee.modifiedDate) : employee.modifiedDate != null);
@@ -146,12 +170,13 @@ public class Employee implements Serializable {
         result = 31 * result + (version != null ? version.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
+        result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        result = 31 * result + (departnemt != null ? departnemt.hashCode() : 0);
+        result = 31 * result + (department != null ? department.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (taxPercentage != null ? taxPercentage.hashCode() : 0);
         result = 31 * result + (kved != null ? kved.hashCode() : 0);
-        result = 31 * result + (taxRecords != null ? taxRecords.hashCode() : 0);
+        result = 31 * result + (quartersList != null ? quartersList.hashCode() : 0);
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
         result = 31 * result + (modifiedDate != null ? modifiedDate.hashCode() : 0);
         return result;

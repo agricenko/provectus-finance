@@ -15,10 +15,10 @@ public abstract class ExchangeRatesProviderFactory {
         return new BankGovUaUahExchangeRatesProvider();
     }
 
-    public abstract List<ExchangeRate> getAllRatesJson();
+    public abstract List<ExchangeRate> getAllRates();
 
-    public abstract List<ExchangeRate> getAllRatesJson(String date);
+    public abstract List<ExchangeRate> getAllRates(String date);
 
-    public abstract ExchangeRate getRatesJson(String currencyCode, String datePattern) throws URISyntaxException, MalformedURLException, ParseException;
+    public abstract ExchangeRate getRates(String currencyCode, String datePattern) throws URISyntaxException, MalformedURLException, ParseException;
 
 }
