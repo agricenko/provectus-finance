@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -49,6 +50,18 @@ public class Employee implements Serializable {
 
     public void removeQuarter(Quarter quarter) {
         quartersList.remove(quarter);
+    }
+
+    public Double getTotalUahVolumeForTaxesByYear(String year) {
+        //get all by year
+        //calculate total UAH volume for taxes from quarters
+        throw new NotImplementedException();
+    }
+
+    public Double getTotalTaxesVolumeByYear(String year) {
+        //get all by year
+        //calculate total taxes volume from quarters
+        throw new NotImplementedException();
     }
 
     public Optional<Quarter> getQuarterByTitle(String quarterTitle) {
