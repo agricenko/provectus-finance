@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by alexey on 10.03.17.
@@ -48,6 +49,10 @@ public class Employee implements Serializable {
 
     public void removeQuarter(Quarter quarter) {
         quartersList.remove(quarter);
+    }
+
+    public Optional<Quarter> getQuarterByTitle(String quarterTitle) {
+        return quartersList.stream().filter(quarter -> quarter.getQuarterTitle().equalsIgnoreCase(quarterTitle)).findFirst();
     }
 
     public ObjectId getId() {

@@ -14,19 +14,22 @@ public class TaxRecordTest {
         TaxRecord taxRecord = new TaxRecord();
         taxRecord.setExchRateUsdUahNBUatReceivingDate(25d);
         taxRecord.setUsdRevenue(100d);
-        Double total = taxRecord.calculateAmountForTaxInspection();
+        taxRecord.calculateVolumeForTaxInspection();
+        Double total = taxRecord.getUahVolumeForTaxInspection();
         assertEquals(total, new Double(2500));
 
         taxRecord = new TaxRecord();
         taxRecord.setUahRevenue(1000d);
-        total = taxRecord.calculateAmountForTaxInspection();
+        taxRecord.calculateVolumeForTaxInspection();
+        total = taxRecord.getUahVolumeForTaxInspection();
         assertEquals(total, new Double(1000));
 
         taxRecord = new TaxRecord();
         taxRecord.setExchRateUsdUahNBUatReceivingDate(8d);
         taxRecord.setUsdRevenue(50d);
         taxRecord.setUahRevenue(500d);
-        total = taxRecord.calculateAmountForTaxInspection();
+        taxRecord.calculateVolumeForTaxInspection();
+        total = taxRecord.getUahVolumeForTaxInspection();
         assertEquals(total, new Double(900));
     }
 
@@ -35,23 +38,26 @@ public class TaxRecordTest {
         TaxRecord taxRecord = new TaxRecord();
         taxRecord.setExchRateUsdUahNBUatReceivingDate(25d);
         taxRecord.setUsdRevenue(100d);
-        taxRecord.calculateAmountForTaxInspection();
-        Double taxValue = taxRecord.calculateTaxValue();
+        taxRecord.calculateVolumeForTaxInspection();
+        taxRecord.calculateTaxValue();
+        Double taxValue = taxRecord.getTaxValue();
         assertEquals(taxValue, new Double(125));
 
 
         taxRecord = new TaxRecord();
         taxRecord.setUahRevenue(1000d);
-        taxRecord.calculateAmountForTaxInspection();
-        taxValue = taxRecord.calculateTaxValue();
+        taxRecord.calculateVolumeForTaxInspection();
+        taxRecord.calculateTaxValue();
+        taxValue = taxRecord.getTaxValue();
         assertEquals(taxValue, new Double(50));
 
         taxRecord = new TaxRecord();
         taxRecord.setExchRateUsdUahNBUatReceivingDate(10d);
         taxRecord.setUsdRevenue(50d);
         taxRecord.setUahRevenue(500d);
-        taxRecord.calculateAmountForTaxInspection();
-        taxValue = taxRecord.calculateTaxValue();
+        taxRecord.calculateVolumeForTaxInspection();
+        taxRecord.calculateTaxValue();
+        taxValue = taxRecord.getTaxValue();
         assertEquals(taxValue, new Double(50));
     }
 }

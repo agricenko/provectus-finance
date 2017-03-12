@@ -28,7 +28,7 @@ public class EmployeeServiceImplTest extends TestParent {
         taxRecord.setUsdRevenue(100d);
         taxRecord.setUahRevenue(50d);
         taxRecord.setExchRateUsdUahNBUatReceivingDate(5d);
-        taxRecord.calculateAmountForTaxInspection();
+        taxRecord.calculateVolumeForTaxInspection();
         taxRecord.calculateTaxValue();
 
         quarter.addQarter(taxRecord);
