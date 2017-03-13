@@ -3,10 +3,14 @@ package com.provectus.taxmanagement.integration.repository;
 import com.provectus.taxmanagement.entity.Employee;
 import com.provectus.taxmanagement.entity.Quarter;
 import com.provectus.taxmanagement.entity.TaxRecord;
+import com.provectus.taxmanagement.enums.QuarterName;
 import com.provectus.taxmanagement.integration.TestParent;
 import org.bson.types.ObjectId;
 import org.junit.Test;
 import org.springframework.dao.OptimisticLockingFailureException;
+
+import java.util.ArrayList;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -71,7 +75,7 @@ public class EmployeeRepositoryTest extends TestParent {
         employee.setSecondName("Ivanovich");
 
         Quarter quarter = new Quarter();
-        quarter.setQuarterTitle("Q1 2017");
+        quarter.setQuarterDefinition(new Quarter.QuarterDefinition(QuarterName.Q4, 2016));
 
         TaxRecord taxRecord = new TaxRecord();
         taxRecord.setUsdRevenue(100d);
@@ -81,14 +85,15 @@ public class EmployeeRepositoryTest extends TestParent {
         taxRecord.calculateTaxValue();
 
         TaxRecord savedTaxRecord = taxRepository.save(taxRecord);
-        quarter.addQarter(savedTaxRecord);
+        quarter.addTaxRecord(savedTaxRecord);
         Quarter savedQaurterRecord = quarterRepository.save(quarter);
         employee.addQuarter(savedQaurterRecord);
         Employee savedEmployeeRecord = employeeRepository.save(employee);
 
         Employee foundRecord = employeeRepository.findOne(savedEmployeeRecord.getId());
-        assertTrue(!foundRecord.getQuartersList().isEmpty());
-        assertTrue(!foundRecord.getQuartersList().get(0).getTaxRecords().isEmpty());
+        Set<Quarter> quartersSet = foundRecord.getQuartersSet();
+        assertFalse(quartersSet.isEmpty());
+        assertFalse(new ArrayList<>(quartersSet).get(0).getTaxRecords().isEmpty());
         assertNotNull(savedEmployeeRecord);
     }
 

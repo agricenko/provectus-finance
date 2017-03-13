@@ -1,5 +1,6 @@
 package com.provectus.taxmanagement.entity;
 
+import com.provectus.taxmanagement.enums.QuarterName;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -16,7 +17,7 @@ import java.util.List;
 public class Quarter {
     @Id
     private ObjectId id;
-    private String quarterTitle;
+    private QuarterDefinition quarterDefinition;
     private Double uahVolumeForTaxes = 0d;
     private Double taxVolume = 0d;
 
@@ -26,12 +27,67 @@ public class Quarter {
     private Date createDate;
     private Date modifiedDate;
 
-    public void addQarter(TaxRecord taxRecord) {
+    public static class QuarterDefinition {
+        private QuarterName quarterName;
+        private Integer year;
+
+        public QuarterDefinition() {
+        }
+
+        public QuarterDefinition(QuarterName quarterName, Integer year) {
+            this.quarterName = quarterName;
+            this.year = year;
+        }
+
+        public QuarterName getQuarterName() {
+            return quarterName;
+        }
+
+        public void setQuarterName(QuarterName quarterName) {
+            this.quarterName = quarterName;
+        }
+
+        public Integer getYear() {
+            return year;
+        }
+
+        public void setYear(Integer year) {
+            this.year = year;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            QuarterDefinition that = (QuarterDefinition) o;
+
+            if (quarterName != that.quarterName) return false;
+            return !(year != null ? !year.equals(that.year) : that.year != null);
+
+        }
+
+        @Override
+        public int hashCode() {
+            int result = quarterName != null ? quarterName.hashCode() : 0;
+            result = 31 * result + (year != null ? year.hashCode() : 0);
+            return result;
+        }
+    }
+
+    public Quarter() {
+    }
+
+    public Quarter(QuarterDefinition quarterDefinition) {
+        this.quarterDefinition = quarterDefinition;
+    }
+
+    public void addTaxRecord(TaxRecord taxRecord) {
         taxRecords.add(taxRecord);
     }
 
-    public void removeQarter(TaxRecord taxRecord) {
-        taxRecords.remove(taxRecord);
+    public boolean removeTaxRecord(TaxRecord taxRecord) {
+        return taxRecords.remove(taxRecord);
     }
 
     public void calculateUahVolumeForTaxes() {
@@ -70,12 +126,12 @@ public class Quarter {
         this.id = id;
     }
 
-    public String getQuarterTitle() {
-        return quarterTitle;
+    public QuarterDefinition getQuarterDefinition() {
+        return quarterDefinition;
     }
 
-    public void setQuarterTitle(String quarterTitle) {
-        this.quarterTitle = quarterTitle;
+    public void setQuarterDefinition(QuarterDefinition quarterDefinition) {
+        this.quarterDefinition = quarterDefinition;
     }
 
     public List<TaxRecord> getTaxRecords() {
@@ -94,7 +150,7 @@ public class Quarter {
         Quarter quarter = (Quarter) o;
 
         if (id != null ? !id.equals(quarter.id) : quarter.id != null) return false;
-        if (quarterTitle != null ? !quarterTitle.equals(quarter.quarterTitle) : quarter.quarterTitle != null)
+        if (quarterDefinition != null ? !quarterDefinition.equals(quarter.quarterDefinition) : quarter.quarterDefinition != null)
             return false;
         if (uahVolumeForTaxes != null ? !uahVolumeForTaxes.equals(quarter.uahVolumeForTaxes) : quarter.uahVolumeForTaxes != null)
             return false;
@@ -108,7 +164,7 @@ public class Quarter {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (quarterTitle != null ? quarterTitle.hashCode() : 0);
+        result = 31 * result + (quarterDefinition != null ? quarterDefinition.hashCode() : 0);
         result = 31 * result + (uahVolumeForTaxes != null ? uahVolumeForTaxes.hashCode() : 0);
         result = 31 * result + (taxVolume != null ? taxVolume.hashCode() : 0);
         result = 31 * result + (taxRecords != null ? taxRecords.hashCode() : 0);

@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by alexey on 12.03.17.
@@ -13,8 +15,7 @@ public class Localization implements Serializable {
     @Id
     private String id;
     private String key;
-    private String value;
-    private String locale;
+    private Map<Locale, String> locales;
 
     public String getId() {
         return id;
@@ -32,20 +33,12 @@ public class Localization implements Serializable {
         this.key = key;
     }
 
-    public String getValue() {
-        return value;
+    public Map<Locale, String> getLocales() {
+        return locales;
     }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getLocale() {
-        return locale;
-    }
-
-    public void setLocale(String locale) {
-        this.locale = locale;
+    public void setLocales(Map<Locale, String> locales) {
+        this.locales = locales;
     }
 
     @Override
@@ -57,8 +50,7 @@ public class Localization implements Serializable {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (key != null ? !key.equals(that.key) : that.key != null) return false;
-        if (value != null ? !value.equals(that.value) : that.value != null) return false;
-        return !(locale != null ? !locale.equals(that.locale) : that.locale != null);
+        return !(locales != null ? !locales.equals(that.locales) : that.locales != null);
 
     }
 
@@ -66,8 +58,7 @@ public class Localization implements Serializable {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (key != null ? key.hashCode() : 0);
-        result = 31 * result + (value != null ? value.hashCode() : 0);
-        result = 31 * result + (locale != null ? locale.hashCode() : 0);
+        result = 31 * result + (locales != null ? locales.hashCode() : 0);
         return result;
     }
 }

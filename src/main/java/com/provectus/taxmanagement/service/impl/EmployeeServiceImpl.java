@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by alexey on 10.03.17.
@@ -32,8 +33,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee save(Employee employee) {
-        List<Quarter> quartersList = employee.getQuartersList();
-        for (Quarter quarter : quartersList) {
+        Set<Quarter> quartersSet = employee.getQuartersSet();
+        for (Quarter quarter : quartersSet) {
             List<TaxRecord> taxRecords = quarter.getTaxRecords();
             for (TaxRecord taxRecord : taxRecords) {
                 taxRecord = taxRepository.save(taxRecord);
