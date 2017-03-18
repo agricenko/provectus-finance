@@ -12,6 +12,6 @@
     <modules>
         <module>tax-management-web</module>
         <module>tax-management-core</module>
-        <module>provectusfinanceparent</module>
+        <module>provectus-finance-parent</module>
     </modules>
 </project>
