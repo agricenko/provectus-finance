@@ -11,15 +11,7 @@
         <relativePath>../provectusfinanceparent</relativePath>
     </parent>
 
-    <artifactId>tax-management-web</artifactId>
+    <artifactId>tax-management-core</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.provectus</groupId>
-            <artifactId>tax-management-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 </project>
