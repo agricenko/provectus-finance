@@ -1,0 +1,36 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+        >
+
+    <ui:style>
+        .container {
+            width: auto;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .header {
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid #bdbdbd;
+            margin-top: 5px;
+            height: 120px;
+            background: #ffffff;
+        }
+
+        .content {
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 10px;
+            height: auto;
+            background: #ffffff;
+            border: 1px solid #bdbdbd;
+        }
+    </ui:style>
+
+    <g:HTMLPanel addStyleNames="{style.container}">
+        <g:SimplePanel addStyleNames="{style.header}" ui:field="headerPanel" />
+        <g:SimplePanel addStyleNames="{style.content}" ui:field="contentPanel"/>
+    </g:HTMLPanel>
+</ui:UiBinder>

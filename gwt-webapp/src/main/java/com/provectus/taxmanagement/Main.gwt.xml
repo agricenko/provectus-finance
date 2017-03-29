@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.7.0//EN"
+        "http://gwtproject.org/doctype/2.7.0/gwt-module.dtd">
+<module rename-to='Main'>
+    <!--    GWT inherits        -->
+    <inherits name="com.google.gwt.user.theme.standard.Standard" />
+    <inherits name="com.google.gwt.inject.Inject"/>
+    <inherits name="com.google.gwt.resources.Resources"/>
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+
+    <!--    Bootstrap inherits      -->
+    <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
+    <inherits name="org.gwtbootstrap3.extras.select.Select"/>
+    <inherits name="org.gwtbootstrap3.extras.datepicker.DatePicker"/>
+    <inherits name="org.gwtbootstrap3.extras.respond.Respond"/>
+    <inherits name="org.gwtbootstrap3.GwtBootstrap3Theme"/>
+    <inherits name="org.gwtbootstrap3.extras.bootbox.Bootbox"/>
+
+    <!--    GWTP inherits       -->
+    <inherits name="com.gwtplatform.mvp.Mvp" />
+
+    <!--    Rest    -->
+    <inherits name="org.fusesource.restygwt.RestyGWT"/>
+
+    <!--    GWT Validation  -->
+    <inherits name="org.hibernate.validator.HibernateValidator" />
+    <replace-with class="com.provectus.taxmanagement.client.validation.ClientValidationFactory">
+        <when-type-is class="javax.validation.ValidatorFactory" />
+    </replace-with>
+
+    <!--    Entry Point     -->
+    <inherits name="com.gwtplatform.mvp.MvpWithEntryPoint"/>
+
+    <!--    Client Module   -->
+    <extend-configuration-property name="gin.ginjector.modules"
+                                   value="com.provectus.taxmanagement.client.application.GWTPModule"/>
+
+    <extend-property name="locale" values="ru"/>
+
+    <source path='client'/>
+    <source path='shared'/>
+    <public path="resource"/>
+
+    <set-configuration-property name="CssResource.enableGss" value="true" />
+    <set-configuration-property name="CssResource.conversionMode" value="strict" />
+    <set-configuration-property name="CssResource.gssDefaultInUiBinder" value="true" />
+    <set-configuration-property name="CssResource.legacy" value="true" />
+
+    <add-linker name="xsiframe" />
+    <set-configuration-property name="devModeRedirectEnabled" value="true" />
+</module>
