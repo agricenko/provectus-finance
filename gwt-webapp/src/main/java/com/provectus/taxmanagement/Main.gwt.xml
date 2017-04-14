@@ -3,7 +3,6 @@
         "http://gwtproject.org/doctype/2.7.0/gwt-module.dtd">
 <module rename-to='Main'>
     <!--    GWT inherits        -->
-    <inherits name="com.google.gwt.user.theme.standard.Standard" />
     <inherits name="com.google.gwt.inject.Inject"/>
     <inherits name="com.google.gwt.resources.Resources"/>
     <inherits name='com.google.gwt.user.User'/>

@@ -28,9 +28,6 @@ public class QuarterPaymentView extends ViewImpl implements QuarterPaymentPresen
     @UiField
     PanelCollapse panelCollapse;
 
-    @UiField
-    Element tr1;
-
     public QuarterPaymentView() {
         Binder uiBinder = GWT.create(Binder.class);
         initWidget(uiBinder.createAndBindUi(this));

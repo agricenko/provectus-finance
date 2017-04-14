@@ -10,15 +10,15 @@ public class ApplicationPlaceManager {
     private PlaceManager placeManager;
 
     public void revealHome() {
-        reveal(NameTokens.HOME);
+        reveal(NameTokens.HOME_);
     }
 
     public void revealEmployeeList() {
-        reveal(NameTokens.EMPLOYEE_LIST);
+        reveal(NameTokens.EMPLOYEE_LIST_);
     }
 
     public void revealPaymentHistory() {
-        reveal(NameTokens.PAYMENT_HISTORY);
+        reveal(NameTokens.PAYMENT_HISTORY_);
     }
 
     public void reveal(String nameToken) {

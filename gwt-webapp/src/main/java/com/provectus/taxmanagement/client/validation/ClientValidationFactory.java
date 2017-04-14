@@ -5,6 +5,7 @@ import com.google.gwt.validation.client.AbstractGwtValidatorFactory;
 import com.google.gwt.validation.client.GwtValidation;
 import com.google.gwt.validation.client.impl.AbstractGwtValidator;
 import com.google.gwt.validation.client.impl.Validation;
+import com.provectus.taxmanagement.shared.model.Employee;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -21,8 +22,7 @@ public class ClientValidationFactory extends AbstractGwtValidatorFactory {
         return GWT.create(GwtValidator.class);
     }
 
-    @GwtValidation(value = {},
-            groups = {})
+    @GwtValidation(value = {Employee.class})
     public interface GwtValidator extends Validator {
     }
 }

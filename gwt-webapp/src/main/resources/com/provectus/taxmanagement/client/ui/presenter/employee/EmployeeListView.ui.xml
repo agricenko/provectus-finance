@@ -5,14 +5,19 @@
              xmlns:filter="urn:import:com.palata22.tc.client.ui.widget.filter"
         >
 
-    <g:HTMLPanel>
-        <b:Heading size="H2" text="Employee"/>
+    <b:Panel>
+        <b:PanelHeader>
+            <b:Heading size="H2" text="Employees"/>
+        </b:PanelHeader>
+
         <b:PanelHeader>
             <b:Button ui:field="addEmployeeButton" type="PRIMARY" marginRight="10">Add</b:Button>
             <b:Button ui:field="editEmployeeButton" type="PRIMARY" marginRight="10">Edit</b:Button>
             <b:Button icon="REFRESH" marginRight="10" ui:field="refreshButton"/>
         </b:PanelHeader>
 
-        <table:EmployeeTable ui:field="employeeTable" height="600px" />
-    </g:HTMLPanel>
+        <b:PanelBody>
+            <table:EmployeeTable ui:field="employeeTable" height="600px" />
+        </b:PanelBody>
+    </b:Panel>
 </ui:UiBinder>

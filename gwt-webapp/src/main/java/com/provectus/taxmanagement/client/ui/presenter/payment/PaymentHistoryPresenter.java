@@ -1,6 +1,5 @@
 package com.provectus.taxmanagement.client.ui.presenter.payment;
 
-import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -58,7 +57,7 @@ public class PaymentHistoryPresenter extends Presenter<PaymentHistoryPresenter.V
 
     @ProxyCodeSplit
     @UseGatekeeper(LoggedInGatekeeper.class)
-    @NameToken(NameTokens.PAYMENT_HISTORY)
+    @NameToken(NameTokens.PAYMENT_HISTORY_)
     public interface Proxy extends ProxyPlace<PaymentHistoryPresenter> {
     }
 }

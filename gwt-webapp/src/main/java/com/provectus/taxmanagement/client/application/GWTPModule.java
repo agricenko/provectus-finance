@@ -2,6 +2,7 @@ package com.provectus.taxmanagement.client.application;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
+import com.gwtplatform.mvp.shared.proxy.RouteTokenFormatter;
 import com.provectus.taxmanagement.client.resource.ImageBundle;
 
 /**
@@ -13,9 +14,10 @@ public class GWTPModule extends AbstractPresenterModule {
     protected void configure() {
         install(new DefaultModule
                 .Builder()
-                .defaultPlace(NameTokens.HOME)
-                .errorPlace(NameTokens.HOME)
-                .unauthorizedPlace(NameTokens.HOME)
+                .tokenFormatter(RouteTokenFormatter.class)
+                .defaultPlace(NameTokens.HOME_)
+                .errorPlace(NameTokens.HOME_)
+                .unauthorizedPlace(NameTokens.HOME_)
                 .build());
         install(new ApplicationModule());
 

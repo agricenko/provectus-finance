@@ -11,7 +11,6 @@ import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.provectus.taxmanagement.client.application.ApplicationPlaceManager;
 import com.provectus.taxmanagement.client.application.NameTokens;
 import com.provectus.taxmanagement.client.ui.presenter.common.LoginPresenter;
-import org.gwtbootstrap3.client.ui.Button;
 
 public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> {
 
@@ -40,7 +39,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     }
 
     @ProxyCodeSplit
-    @NameToken(NameTokens.HOME)
+    @NameToken(NameTokens.HOME_)
     public interface MyProxy extends ProxyPlace<HomePresenter> {
     }
 }

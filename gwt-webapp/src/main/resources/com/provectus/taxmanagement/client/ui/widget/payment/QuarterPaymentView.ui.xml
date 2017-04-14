@@ -4,9 +4,18 @@
              xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
              xmlns:b2="urn:import:org.gwtbootstrap3.extras.datepicker.client.ui"
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
-        >
+             xmlns:t="urn:import:com.provectus.taxmanagement.client.ui.widget.table"
+>
 
     <ui:style>
+        .quarterTable {
+            margin-bottom: 0px;
+            font-size: 12px;
+        }
+
+        th {
+            text-align: center;
+        }
     </ui:style>
 
     <b:Panel ui:field="panel" marginBottom="5">
@@ -16,77 +25,8 @@
             <b:Button type="DANGER" icon="REMOVE" size="EXTRA_SMALL" ui:field="removeButton"/>
         </b:PanelHeader>
         <b:PanelCollapse ui:field="panelCollapse" in="true">
-            <b:PanelBody>
-                <g:HTMLPanel>
-                    <table border="1" width="100%">
-                        <tr ui:field="tr1">
-                            <td></td>
-                            <td></td>
-                            <td colspan="2">Валюта Поступления</td>
-                            <td colspan="4"></td>
-                            <td colspan="3">Единый Налог</td>
-                        </tr>
-                        <tr>
-                            <td>Наименование Контрагента</td>
-                            <td>Дата поступения денежных средств</td>
-                            <td>Доллары</td>
-                            <td>Гривна</td>
-                            <td>Курс НБУ на дату поступления</td>
-                            <td>Эквивалент в гривне по курсу НБУ к налогообложению</td>
-                            <td>Сумма к налогообложению</td>
-                            <td width="95">Период</td>
-                            <td>Начислено</td>
-                            <td>Оплачено</td>
-                            <td>Дата оплаты</td>
-                        </tr>
-                        <tr>
-                            <td>Провектус</td>
-                            <td>27.01.2016</td>
-                            <td>20</td>
-                            <td>100</td>
-                            <td>24,848956</td>
-                            <td>496,97912</td>
-                            <td>596,98</td>
-                            <td>1 квартал 2016</td>
-                            <td>29,85</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Провектус</td>
-                            <td>27.01.2016</td>
-                            <td>20</td>
-                            <td>100</td>
-                            <td>24,848956</td>
-                            <td>496,97912</td>
-                            <td>596,98</td>
-                            <td>1 квартал 2016</td>
-                            <td>29,85</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Провектус</td>
-                            <td>27.01.2016</td>
-                            <td>20</td>
-                            <td>100</td>
-                            <td>24,848956</td>
-                            <td>496,97912</td>
-                            <td>596,98</td>
-                            <td>1 квартал 2016</td>
-                            <td>29,85</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7">Провектус</td>
-                            <td>3797,52</td>
-                            <td>189,88</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </g:HTMLPanel>
+            <b:PanelBody paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0">
+                <t:QuarterTable addStyleNames="{style.quarterTable}"/>
             </b:PanelBody>
         </b:PanelCollapse>
     </b:Panel>

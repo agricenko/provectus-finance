@@ -21,7 +21,6 @@ public class FullScreenLayoutPresenter extends Presenter<FullScreenLayoutPresent
     @Inject
     HeaderPresenterWidget headerPresenterWidget;
 
-
     @Inject
     public FullScreenLayoutPresenter(EventBus eventBus, IView view, IProxy proxy) {
         super(eventBus, view, proxy, RevealType.Root);

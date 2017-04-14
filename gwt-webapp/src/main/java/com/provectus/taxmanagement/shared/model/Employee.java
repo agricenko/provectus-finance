@@ -1,5 +1,9 @@
 package com.provectus.taxmanagement.shared.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.*;
 
@@ -11,12 +15,26 @@ public class Employee implements Serializable {
 
     private String id;
     private Long version;
+    @NotNull
+    @Size(max = 40)
     private String firstName;
+    @NotNull
+    @Size(max = 40)
     private String lastName;
+    @NotNull
+    @Size(max = 40)
     private String secondName;
+    @NotNull
+    @Size(max = 200)
     private String comment;
+    @NotNull
+    @Size(max = 50)
     private String department;
+    @NotNull
+    @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,254})$")
     private String email;
+    @NotNull
+    @Max(100)
     private Integer taxPercentage = TAX_PERCENTAGE_EMPLOYEE_3th_CATEGORY;//default current value
     private List<String> kved;
     private List<Quarter> quartersSet = new ArrayList<>();

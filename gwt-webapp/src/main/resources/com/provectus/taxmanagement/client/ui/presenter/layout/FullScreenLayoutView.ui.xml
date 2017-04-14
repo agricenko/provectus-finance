@@ -21,11 +21,11 @@
 
         .content {
             margin-top: 5px;
-            padding: 10px;
-            border-radius: 10px;
-            height: auto;
-            background: #ffffff;
-            border: 1px solid #bdbdbd;
+            /*padding: 10px;*/
+            /*border-radius: 10px;*/
+            /*height: auto;*/
+            /*background: #ffffff;*/
+            /*border: 1px solid #bdbdbd;*/
         }
     </ui:style>
 

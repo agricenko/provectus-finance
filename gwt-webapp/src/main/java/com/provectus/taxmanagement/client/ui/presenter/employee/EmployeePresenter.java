@@ -12,54 +12,54 @@ import com.provectus.taxmanagement.client.application.ApplicationPlaceManager;
 import com.provectus.taxmanagement.client.application.LoggedInGatekeeper;
 import com.provectus.taxmanagement.client.application.NameTokens;
 import com.provectus.taxmanagement.client.ui.presenter.layout.FullScreenLayoutPresenter;
-import com.provectus.taxmanagement.client.ui.widget.table.EmployeeTable;
+import com.provectus.taxmanagement.shared.model.Employee;
 import org.gwtbootstrap3.client.ui.Button;
 
-public class EmployeeListPresenter extends Presenter<EmployeeListPresenter.ViewImpl, EmployeeListPresenter.Proxy> {
+public class EmployeePresenter extends Presenter<EmployeePresenter.ViewImpl, EmployeePresenter.Proxy> {
 
     @Inject
     ApplicationPlaceManager applicationPlaceManager;
 
     @Inject
-    public EmployeeListPresenter(
+    public EmployeePresenter(
             final EventBus eventBus,
-            final ViewImpl view,
-            final Proxy proxy) {
+            final EmployeePresenter.ViewImpl view,
+            final EmployeePresenter.Proxy proxy) {
         super(eventBus, view, proxy, FullScreenLayoutPresenter.MAIN_SLOT);
     }
 
     @Override
-    protected void onReset() {
-        reloadEmployeeTable();
-    }
-
-    @Override
     protected void onBind() {
-        getView().getRefreshTable().addClickHandler(clickEvent -> reloadEmployeeTable());
+        getView().getCancelButton().addClickHandler(clickEvent -> {
+            applicationPlaceManager.revealEmployeeList();
+        });
 
-        getView().getAddEmployeeButton().addClickHandler(clickEvent -> {
-            applicationPlaceManager.reveal(NameTokens.EMPLOYEE_);
+        getView().getSaveButton().addClickHandler(clickEvent -> {
+            Employee employee = getView().getEmployee();
+            if (employee != null) {
+                //TODO send request to server
+                //if employee.id == null -> create new Employee
+                //if employee.id != null -> edit Employee
+            }
         });
     }
 
-    public void reloadEmployeeTable() {
-        //TODO reload data from Rest Service
+    @Override
+    protected void onReset() {
     }
 
     public interface ViewImpl extends View {
 
-        EmployeeTable getEmployeeTable();
+        Employee getEmployee();
 
-        Button getAddEmployeeButton();
+        Button getSaveButton();
 
-        Button getEditEmployeeButton();
-
-        Button getRefreshTable();
+        Button getCancelButton();
     }
 
     @ProxyCodeSplit
     @UseGatekeeper(LoggedInGatekeeper.class)
-    @NameToken(NameTokens.EMPLOYEE_LIST_)
-    public interface Proxy extends ProxyPlace<EmployeeListPresenter> {
+    @NameToken(NameTokens.EMPLOYEE_)
+    public interface Proxy extends ProxyPlace<EmployeePresenter> {
     }
 }

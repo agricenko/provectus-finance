@@ -5,8 +5,8 @@ package com.provectus.taxmanagement.client.application;
  */
 public interface NameTokens {
 
-    String HOME = "home";
-    String EMPLOYEE = "employee";
-    String EMPLOYEE_LIST = "employee_list";
-    String PAYMENT_HISTORY = "payment_history";
+    String HOME_ = "/home";
+    String EMPLOYEE_ = "/employee";
+    String EMPLOYEE_LIST_ = "/employeeList";
+    String PAYMENT_HISTORY_ = "/paymentHistory";
 }
