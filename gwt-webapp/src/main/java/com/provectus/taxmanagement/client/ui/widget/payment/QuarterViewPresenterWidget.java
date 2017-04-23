@@ -7,7 +7,7 @@ import com.gwtplatform.mvp.client.View;
 import com.provectus.taxmanagement.client.application.ApplicationPlaceManager;
 import com.provectus.taxmanagement.shared.model.Quarter;
 
-public class QuarterPaymentPresenterWidget extends PresenterWidget<QuarterPaymentPresenterWidget.ViewI> {
+public class QuarterViewPresenterWidget extends PresenterWidget<QuarterViewPresenterWidget.ViewI> {
 
     @Inject
     ApplicationPlaceManager placeManager;
@@ -15,7 +15,7 @@ public class QuarterPaymentPresenterWidget extends PresenterWidget<QuarterPaymen
     private Quarter quarter;
 
     @Inject
-    public QuarterPaymentPresenterWidget(EventBus eventBus, ViewI view) {
+    public QuarterViewPresenterWidget(EventBus eventBus, ViewI view) {
         super(eventBus, view);
     }
 

@@ -1,5 +1,6 @@
 package com.provectus.taxmanagement.client.ui.presenter.payment;
 
+import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -12,6 +13,8 @@ import com.provectus.taxmanagement.client.application.ApplicationPlaceManager;
 import com.provectus.taxmanagement.client.application.LoggedInGatekeeper;
 import com.provectus.taxmanagement.client.application.NameTokens;
 import com.provectus.taxmanagement.client.ui.presenter.layout.FullScreenLayoutPresenter;
+import com.provectus.taxmanagement.client.ui.widget.employee.EmployeeList;
+import com.provectus.taxmanagement.shared.model.Employee;
 import com.provectus.taxmanagement.shared.model.Quarter;
 
 import java.util.ArrayList;
@@ -44,6 +47,13 @@ public class PaymentHistoryPresenter extends Presenter<PaymentHistoryPresenter.V
 
     @Override
     protected void onBind() {
+        getView().getEmployeeList().addSelectionHandler(new SelectionChangeEvent.Handler() {
+            @Override
+            public void onSelectionChange(SelectionChangeEvent selectionChangeEvent) {
+                Employee selected = getView().getEmployeeList().getSelected();
+                applicationPlaceManager.revealPaymentHistory(selected.getId());
+            }
+        });
     }
 
     public void reloadEmployeeTable() {
@@ -52,12 +62,14 @@ public class PaymentHistoryPresenter extends Presenter<PaymentHistoryPresenter.V
 
     public interface ViewImpl extends View {
 
+        EmployeeList getEmployeeList();
+
         void setQuarters(List<Quarter> quarters);
     }
 
     @ProxyCodeSplit
     @UseGatekeeper(LoggedInGatekeeper.class)
-    @NameToken(NameTokens.PAYMENT_HISTORY_)
+    @NameToken(NameTokens.PAYMENT_HISTORY)
     public interface Proxy extends ProxyPlace<PaymentHistoryPresenter> {
     }
 }

@@ -15,9 +15,9 @@ public class GWTPModule extends AbstractPresenterModule {
         install(new DefaultModule
                 .Builder()
                 .tokenFormatter(RouteTokenFormatter.class)
-                .defaultPlace(NameTokens.HOME_)
-                .errorPlace(NameTokens.HOME_)
-                .unauthorizedPlace(NameTokens.HOME_)
+                .defaultPlace(NameTokens.HOME)
+                .errorPlace(NameTokens.HOME)
+                .unauthorizedPlace(NameTokens.HOME)
                 .build());
         install(new ApplicationModule());
 

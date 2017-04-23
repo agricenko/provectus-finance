@@ -10,19 +10,29 @@ public class ApplicationPlaceManager {
     private PlaceManager placeManager;
 
     public void revealHome() {
-        reveal(NameTokens.HOME_);
+        reveal(NameTokens.HOME);
     }
 
     public void revealEmployeeList() {
-        reveal(NameTokens.EMPLOYEE_LIST_);
+        reveal(NameTokens.EMPLOYEE_LIST);
     }
 
     public void revealPaymentHistory() {
-        reveal(NameTokens.PAYMENT_HISTORY_);
+        reveal(NameTokens.PAYMENT_HISTORY);
+    }
+
+    public void revealReports() {
+        reveal(NameTokens.REPORTS);
+    }
+
+    public void revealPaymentHistory(String userId) {
+        placeManager.revealPlace(new PlaceRequest.Builder()
+                .nameToken(NameTokens.PAYMENT_HISTORY)
+                .with("userId", userId)
+                .build());
     }
 
     public void reveal(String nameToken) {
         placeManager.revealPlace(new PlaceRequest.Builder().nameToken(nameToken).build());
     }
-
 }

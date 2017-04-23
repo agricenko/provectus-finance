@@ -59,7 +59,7 @@ public class EmployeePresenter extends Presenter<EmployeePresenter.ViewImpl, Emp
 
     @ProxyCodeSplit
     @UseGatekeeper(LoggedInGatekeeper.class)
-    @NameToken(NameTokens.EMPLOYEE_)
+    @NameToken(NameTokens.EMPLOYEE)
     public interface Proxy extends ProxyPlace<EmployeePresenter> {
     }
 }

@@ -17,6 +17,8 @@ public class NavigationView extends ViewImpl implements NavigationPresenterWidge
     Button employeeButton;
     @UiField
     Button paymentHistoryButton;
+    @UiField
+    Button reportsButton;
 
     @Inject
     public NavigationView(Binder uiBinder) {
@@ -31,6 +33,11 @@ public class NavigationView extends ViewImpl implements NavigationPresenterWidge
     @Override
     public Button getPaymentHistoryButton() {
         return paymentHistoryButton;
+    }
+
+    @Override
+    public Button getReportsButton() {
+        return reportsButton;
     }
 
     interface Binder extends UiBinder<Widget, NavigationView> {

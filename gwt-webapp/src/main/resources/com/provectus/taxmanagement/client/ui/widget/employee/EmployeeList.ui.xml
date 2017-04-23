@@ -18,16 +18,9 @@
         }
     </ui:style>
 
-    <b:Panel ui:field="panel" marginBottom="5">
-        <b:PanelHeader>
-            <b:Anchor text="???" marginRight="10" ui:field="anchor"/>
-            <b:Button type="SUCCESS" icon="SAVE" size="EXTRA_SMALL"  marginRight="5" ui:field="saveButton"/>
-            <b:Button type="DANGER" icon="REMOVE" size="EXTRA_SMALL" ui:field="removeButton"/>
-        </b:PanelHeader>
-        <b:PanelCollapse ui:field="panelCollapse" in="true">
-            <b:PanelBody paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0">
-                <payment:QuarterEditTable addStyleNames="{style.quarterTable}"/>
-            </b:PanelBody>
-        </b:PanelCollapse>
+    <b:Panel>
+        <b:LinkedGroup ui:field="linkedGroup" />
+
+        <b:Pagination ui:field="pagination" paginationSize="SMALL" />
     </b:Panel>
 </ui:UiBinder>

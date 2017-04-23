@@ -3,6 +3,7 @@
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
              xmlns:b2="urn:import:org.gwtbootstrap3.extras.datepicker.client.ui"
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:employee="urn:import:com.provectus.taxmanagement.client.ui.widget.employee"
         >
 
     <ui:style>
@@ -18,6 +19,13 @@
             border: 1px solid #000000;
             text-align: center;
         }
+
+        edit-cell input {
+            /*margin: 0px;*/
+            width: 30px;
+            text-align: right;
+
+        }
     </ui:style>
 
     <b:Container fluid="true">
@@ -30,54 +38,7 @@
                     </b:InputGroupButton>
                 </b:InputGroup>
 
-                <b:LinkedGroup>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User1"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User2"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User3"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User4"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User5"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User6"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User7"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User8"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User9"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                    <b:LinkedGroupItem>
-                        <b:Heading size="H3" text="User10"/>
-                        <b:LinkedGroupItemText text="Василий Петрович"/>
-                    </b:LinkedGroupItem>
-                </b:LinkedGroup>
-
-                <b:Pagination>
-                    <b:AnchorListItem text="1"/>
-                    <b:AnchorListItem text="2"/>
-                    <b:AnchorListItem text="3"/>
-                </b:Pagination>
+                <employee:EmployeeList ui:field="employeeList" />
             </b:Column>
             <b:Column size="MD_10" paddingLeft="0" marginTop="5">
                 <b:Form type="INLINE">

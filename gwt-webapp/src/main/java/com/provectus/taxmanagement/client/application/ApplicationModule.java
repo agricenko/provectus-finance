@@ -18,7 +18,7 @@ import com.provectus.taxmanagement.client.ui.presenter.payment.PaymentHistoryPre
 import com.provectus.taxmanagement.client.ui.presenter.payment.PaymentHistoryView;
 import com.provectus.taxmanagement.client.ui.widget.menu.NavigationPresenterWidget;
 import com.provectus.taxmanagement.client.ui.widget.menu.NavigationView;
-import com.provectus.taxmanagement.client.ui.widget.payment.QuarterPaymentPresenterWidget;
+import com.provectus.taxmanagement.client.ui.widget.payment.QuarterViewPresenterWidget;
 import com.provectus.taxmanagement.client.ui.widget.payment.QuarterPaymentView;
 import com.provectus.taxmanagement.shared.UserSession;
 
@@ -37,7 +37,7 @@ public class ApplicationModule extends AbstractPresenterModule {
         bindPresenterWidget(LoginPresenter.class, LoginPresenter.MyView.class, LoginView.class);
         bindPresenterWidget(HeaderPresenterWidget.class, HeaderPresenterWidget.HeaderView.class, HeaderView.class);
         bindPresenterWidget(NavigationPresenterWidget.class, NavigationPresenterWidget.NavigationBarView.class, NavigationView.class);
-        bindPresenterWidget(QuarterPaymentPresenterWidget.class, QuarterPaymentPresenterWidget.ViewI.class, QuarterPaymentView.class);
+        bindPresenterWidget(QuarterViewPresenterWidget.class, QuarterViewPresenterWidget.ViewI.class, QuarterPaymentView.class);
     }
 
     private void bindApplicationClasses() {

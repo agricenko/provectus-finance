@@ -1,7 +1,6 @@
 package com.provectus.taxmanagement.client.ui.widget.payment;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -13,7 +12,7 @@ import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.Panel;
 import org.gwtbootstrap3.client.ui.PanelCollapse;
 
-public class QuarterPaymentView extends ViewImpl implements QuarterPaymentPresenterWidget.ViewI {
+public class QuarterPaymentView extends ViewImpl implements QuarterViewPresenterWidget.ViewI {
 
     @UiField
     Panel panel;

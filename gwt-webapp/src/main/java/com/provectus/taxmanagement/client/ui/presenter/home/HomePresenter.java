@@ -39,7 +39,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     }
 
     @ProxyCodeSplit
-    @NameToken(NameTokens.HOME_)
+    @NameToken(NameTokens.HOME)
     public interface MyProxy extends ProxyPlace<HomePresenter> {
     }
 }

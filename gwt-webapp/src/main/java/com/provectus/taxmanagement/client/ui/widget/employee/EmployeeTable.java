@@ -1,4 +1,4 @@
-package com.provectus.taxmanagement.client.ui.widget.table;
+package com.provectus.taxmanagement.client.ui.widget.employee;
 
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.provectus.taxmanagement.client.ui.widget.common.AbstractAsyncTable;

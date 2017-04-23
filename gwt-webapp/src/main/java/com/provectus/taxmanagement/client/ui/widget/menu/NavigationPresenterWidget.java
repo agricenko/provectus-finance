@@ -35,6 +35,13 @@ public class NavigationPresenterWidget extends PresenterWidget<NavigationPresent
                 placeManager.revealPaymentHistory();
             }
         });
+
+        getView().getReportsButton().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent clickEvent) {
+                placeManager.revealReports();
+            }
+        });
     }
 
     public interface NavigationBarView extends View {
@@ -42,5 +49,7 @@ public class NavigationPresenterWidget extends PresenterWidget<NavigationPresent
         Button getEmployeeButton();
 
         Button getPaymentHistoryButton();
+
+        Button getReportsButton();
     }
 }

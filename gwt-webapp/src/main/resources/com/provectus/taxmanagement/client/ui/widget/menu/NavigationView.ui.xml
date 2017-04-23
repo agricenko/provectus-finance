@@ -5,5 +5,6 @@
     <g:HTMLPanel>
         <b:Button type="LINK" ui:field="employeeButton">Employee</b:Button>
         <b:Button type="LINK" ui:field="paymentHistoryButton">Payment History</b:Button>
+        <b:Button type="LINK" ui:field="reportsButton">Reports</b:Button>
     </g:HTMLPanel>
 </ui:UiBinder>

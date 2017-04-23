@@ -1,5 +1,7 @@
 package com.provectus.taxmanagement.client.ui.presenter.employee;
 
+import com.google.gwt.view.client.AsyncDataProvider;
+import com.google.gwt.view.client.HasData;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -12,7 +14,8 @@ import com.provectus.taxmanagement.client.application.ApplicationPlaceManager;
 import com.provectus.taxmanagement.client.application.LoggedInGatekeeper;
 import com.provectus.taxmanagement.client.application.NameTokens;
 import com.provectus.taxmanagement.client.ui.presenter.layout.FullScreenLayoutPresenter;
-import com.provectus.taxmanagement.client.ui.widget.table.EmployeeTable;
+import com.provectus.taxmanagement.client.ui.widget.employee.EmployeeTable;
+import com.provectus.taxmanagement.shared.model.Employee;
 import org.gwtbootstrap3.client.ui.Button;
 
 public class EmployeeListPresenter extends Presenter<EmployeeListPresenter.ViewImpl, EmployeeListPresenter.Proxy> {
@@ -38,7 +41,14 @@ public class EmployeeListPresenter extends Presenter<EmployeeListPresenter.ViewI
         getView().getRefreshTable().addClickHandler(clickEvent -> reloadEmployeeTable());
 
         getView().getAddEmployeeButton().addClickHandler(clickEvent -> {
-            applicationPlaceManager.reveal(NameTokens.EMPLOYEE_);
+            applicationPlaceManager.reveal(NameTokens.EMPLOYEE);
+        });
+
+        getView().getEmployeeTable().setDataProvider(new AsyncDataProvider<Employee>() {
+            @Override
+            protected void onRangeChanged(HasData<Employee> hasData) {
+                reloadEmployeeTable();
+            }
         });
     }
 
@@ -59,7 +69,7 @@ public class EmployeeListPresenter extends Presenter<EmployeeListPresenter.ViewI
 
     @ProxyCodeSplit
     @UseGatekeeper(LoggedInGatekeeper.class)
-    @NameToken(NameTokens.EMPLOYEE_LIST_)
+    @NameToken(NameTokens.EMPLOYEE_LIST)
     public interface Proxy extends ProxyPlace<EmployeeListPresenter> {
     }
 }

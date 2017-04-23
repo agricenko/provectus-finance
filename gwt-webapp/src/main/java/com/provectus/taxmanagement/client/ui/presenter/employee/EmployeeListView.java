@@ -4,7 +4,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-import com.provectus.taxmanagement.client.ui.widget.table.EmployeeTable;
+import com.provectus.taxmanagement.client.ui.widget.employee.EmployeeTable;
 import org.gwtbootstrap3.client.ui.Button;
 
 public class EmployeeListView extends com.gwtplatform.mvp.client.ViewImpl implements EmployeeListPresenter.ViewImpl {

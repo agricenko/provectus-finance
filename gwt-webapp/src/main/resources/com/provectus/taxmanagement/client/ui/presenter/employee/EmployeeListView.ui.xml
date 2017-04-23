@@ -3,7 +3,7 @@
              xmlns:table="urn:import:com.provectus.taxmanagement.client.ui.widget.table"
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:filter="urn:import:com.palata22.tc.client.ui.widget.filter"
-        >
+             xmlns:employee="urn:import:com.provectus.taxmanagement.client.ui.widget.employee">
 
     <b:Panel>
         <b:PanelHeader>
@@ -17,7 +17,7 @@
         </b:PanelHeader>
 
         <b:PanelBody>
-            <table:EmployeeTable ui:field="employeeTable" height="600px" />
+            <employee:EmployeeTable ui:field="employeeTable" height="600px" />
         </b:PanelBody>
     </b:Panel>
 </ui:UiBinder>

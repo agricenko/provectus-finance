@@ -1,7 +1,10 @@
-package com.provectus.taxmanagement.client.ui.widget.table;
+package com.provectus.taxmanagement.client.ui.widget.payment;
 
+import com.google.gwt.cell.client.DatePickerCell;
 import com.google.gwt.cell.client.EditTextCell;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.dom.builder.shared.TableRowBuilder;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.cellview.client.AbstractCellTable;
 import com.google.gwt.user.cellview.client.AbstractHeaderOrFooterBuilder;
 import com.google.gwt.user.cellview.client.Column;
@@ -12,14 +15,15 @@ import com.provectus.taxmanagement.shared.model.TaxRecord;
 import org.gwtbootstrap3.client.ui.gwt.CellTable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class QuarterTable extends Composite {
+public class QuarterEditTable extends Composite {
 
     protected CellTable<TaxRecord> table;
     protected Quarter quarter = null;
 
-    public QuarterTable() {
+    public QuarterEditTable() {
         table = new CellTable<>();
         table.setStriped(true);
         table.setBordered(true);
@@ -49,14 +53,21 @@ public class QuarterTable extends Composite {
             }
         };
 
-        TextColumn<TaxRecord> receivingDateColumn = new TextColumn<TaxRecord>() {
+        DateTimeFormat dateFormat = DateTimeFormat.getFormat(DateTimeFormat.PredefinedFormat.DATE_MEDIUM);
+        Column<TaxRecord, Date> receivingDateColumn = new Column<TaxRecord, Date>(new DatePickerCell()) {
             @Override
-            public String getValue(TaxRecord taxRecord) {
-                return String.valueOf(taxRecord.getReceivingDate());
+            public Date getValue(TaxRecord taxRecord) {
+                return new Date();
             }
         };
+        receivingDateColumn.setFieldUpdater(new FieldUpdater<TaxRecord, Date>() {
+            @Override
+            public void update(int i, TaxRecord taxRecord, Date s) {
+                taxRecord.setReceivingDate(s);
+            }
+        });
 
-        TextColumn<TaxRecord> usdRevenueColumn = new TextColumn<TaxRecord>() {
+        Column<TaxRecord, String> usdRevenueColumn = new Column<TaxRecord, String>(new EditTextCell()) {
             @Override
             public String getValue(TaxRecord taxRecord) {
                 return String.valueOf(taxRecord.getUsdRevenue());
